@@ -1,4 +1,4 @@
-# Asistente de Investigación Académica con RAG (Evaluación Parcial 2)
+# Asistente de Investigación Académica con RAG (Evaluaciones Parciales 2 y 3)
 
 Agente jerárquico con memoria, recuperación semántica y planificación adaptativa.
 Proyecto de **ISY0101 · Ingeniería de Soluciones con Inteligencia Artificial** (sección ISY0101-012V).
@@ -54,13 +54,20 @@ Flujo de trabajo de `PROCESAR_PAPER`:
 ```
 .
 ├── notebook/
-│   └── chatbot_rag_investigacion_EVA_2.ipynb   # Agente completo (Colab + Gradio)
+│   ├── chatbot_rag_investigacion_EVA_2.ipynb   # Agente de la EP2 (Colab + Gradio)
+│   └── chatbot_rag_investigacion_EVA_3.ipynb   # EP3: mismo agente + observabilidad, seguridad y evaluación
+├── observabilidad/
+│   ├── metricas.py                              # Cálculo de métricas desde los logs
+│   └── analizar_logs.py                         # Análisis de logs por consola -> logs/hallazgos.md
+├── dashboard/
+│   └── app.py                                   # Dashboard de monitoreo (Streamlit)
 ├── scripts_crewai/
 │   ├── 3-multiagent_crewai_full.py             # Pipeline secuencial (3 agentes + correo simulado)
 │   └── 4-multiagent_crewai_hierarchical.py     # Mismo pipeline, orquestación jerárquica
 ├── docs/
 │   ├── diagramas/                               # Orquestación y flujo de trabajo
-│   ├── evidencia_pruebas/                       # Capturas de las pruebas
+│   ├── evidencia_pruebas/                       # Capturas de las pruebas (EP2)
+│   ├── evidencia_ep3/                           # Logs, métricas y capturas del dashboard (EP3)
 │   └── papers_de_prueba/                        # PDFs ficticios en inglés para probar el agente
 ├── informe/
 │   └── Informe_EP2_Asistente_Investigacion_RAG.docx
@@ -123,9 +130,50 @@ CrewAI puede preguntar si quieres compartir el trace de ejecución; responde `N`
 
 Capturas del código relevante: `07_` (planificador), `08_` (índice FAISS), `09_` (capa CrewAI jerárquica) y `10_` (herramientas del agente).
 
+## Evaluación Parcial 3: observabilidad, trazabilidad y seguridad
+
+`notebook/chatbot_rag_investigacion_EVA_3.ipynb` es el agente de la EP2 con las siguientes capas nuevas (Celdas 9.1 a 9.7). Las funciones originales no se reescribieron: se *envuelven* con el decorador `@observar`.
+
+| Indicador | Qué se agregó | Dónde |
+|---|---|---|
+| IL3.1 Observabilidad | Latencia por etapa y total, tokens, costo estimado, memoria del proceso, precisión y consistencia del planificador, frecuencia de errores | Celdas 9.1, 9.3 y 9.4 |
+| IL3.2 Trazabilidad | Log JSON Lines (`logs/agent_trace.jsonl`) con `trace_id` por mensaje; análisis de cuellos de botella | Celdas 9.1 y 9.5, `observabilidad/` |
+| IL3.3 Seguridad y ética | Detección de *prompt injection*, límites de texto y PDF, solo archivos PDF, enmascarado de datos personales en los logs | Celda 9.2 |
+| IL3.4 Mejora y escalabilidad | Recomendaciones basadas en las métricas observadas | Informe |
+| Dashboard | Streamlit con indicadores, latencia, errores, tokens, precisión del planificador y trazabilidad de una ejecución | `dashboard/app.py` |
+
+### Cómo ejecutarlo
+
+1. Abre el notebook de la EP3 en Colab (mismos secretos que la EP2: `GROQ_API_KEY` y `GEMINI_API_KEY`) y ejecuta de arriba hacia abajo.
+2. La Celda 9.4 corre el set de pruebas (16 casos x 3 repeticiones, unas 48 llamadas al LLM). Si Groq limita el plan gratuito, baja `REPETICIONES` en la Celda 9.3.
+3. Usa el chat (Celda 11) o la celda de prueba rápida para generar trazas reales, y vuelve a ejecutar las Celdas 9.5 y 9.6.
+4. La Celda 9.7 descarga `logs_ep3.zip`. Descomprímelo en la raíz del repositorio de modo que exista `logs/agent_trace.jsonl`.
+5. Dashboard local:
+
+```bash
+pip install -r requirements.txt
+streamlit run dashboard/app.py
+```
+
+6. Análisis por consola (genera `logs/hallazgos.md`):
+
+```bash
+python observabilidad/analizar_logs.py logs/agent_trace.jsonl
+```
+
+Los logs, las métricas y las capturas del dashboard que se usan como evidencia se guardan en `docs/evidencia_ep3/`.
+
+### Esquema de los eventos
+
+Cada línea de `agent_trace.jsonl` es un JSON con `ts`, `trace_id`, `evento` (`solicitud`, `planificador`, `etapa`, `llm_call`, `bloqueo_seguridad`, `respuesta`), `estrategia`, `duracion_s` y los campos propios del evento (`tokens_in`, `tokens_out`, `ok`, `error`, `fallback`, etc.). Filtrando por `trace_id` se reconstruye todo lo que hizo el agente con un mensaje.
+
+### Privacidad
+
+Los logs guardan solo un extracto de 80 caracteres del mensaje, con correos, RUT, teléfonos y tarjetas enmascarados, y el largo original del texto. No se almacenan los PDF ni su contenido.
+
 ## Uso de herramientas de IA
 
-Se utilizó Claude (Anthropic) como apoyo en la depuración del código, en la estructura de la documentación y en los diagramas. Las ideas, el análisis y las justificaciones técnicas son propios.
+Se utilizó Claude (Anthropic) como apoyo en la depuración del código, en la estructura de la documentación, en los diagramas y, en la EP3, en la escritura del código de instrumentación y del dashboard, que luego fue ejecutado y validado por el autor. Las ideas, el análisis y las justificaciones técnicas son propios.
 
 ## Referencias
 

@@ -1,0 +1,11 @@
+{
+  "precision_planificador": 0.812,
+  "consistencia": 1.0,
+  "tasa_fallback": 0.062,
+  "latencia_media_s": 0.418,
+  "latencia_p95_s": 0.544,
+  "casos": 16,
+  "repeticiones": 3,
+  "guardrails_correctos": 8,
+  "guardrails_total": 8
+}

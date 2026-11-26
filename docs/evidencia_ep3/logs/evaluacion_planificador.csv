@@ -1,0 +1,49 @@
+categoria,texto,repeticion,esperada,elegida,acierto,fallback,latencia_s
+saludo,"Hola, como estas?",1,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,3.065
+saludo,"Hola, como estas?",2,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.352
+saludo,"Hola, como estas?",3,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.276
+saludo,Buenas tardes,1,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.285
+saludo,Buenas tardes,2,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.326
+saludo,Buenas tardes,3,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.283
+charla,Cuentame un chiste corto,1,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.368
+charla,Cuentame un chiste corto,2,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.407
+charla,Cuentame un chiste corto,3,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.304
+charla,"Gracias, eso era todo",1,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.31
+charla,"Gracias, eso era todo",2,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.462
+charla,"Gracias, eso era todo",3,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.321
+sobre_el_sistema,Que puedes hacer?,1,RESPUESTA_CON_RAG,CONVERSACION_LIBRE,False,False,0.344
+sobre_el_sistema,Que puedes hacer?,2,RESPUESTA_CON_RAG,CONVERSACION_LIBRE,False,False,0.507
+sobre_el_sistema,Que puedes hacer?,3,RESPUESTA_CON_RAG,CONVERSACION_LIBRE,False,False,0.436
+sobre_el_sistema,Como funciona el RAG en este sistema?,1,RESPUESTA_CON_RAG,RESPUESTA_CON_RAG,True,False,0.483
+sobre_el_sistema,Como funciona el RAG en este sistema?,2,RESPUESTA_CON_RAG,RESPUESTA_CON_RAG,True,False,0.53
+sobre_el_sistema,Como funciona el RAG en este sistema?,3,RESPUESTA_CON_RAG,RESPUESTA_CON_RAG,True,False,0.515
+sobre_el_sistema,Que formatos de archivo aceptas?,1,RESPUESTA_CON_RAG,RESPUESTA_CON_RAG,True,False,0.454
+sobre_el_sistema,Que formatos de archivo aceptas?,2,RESPUESTA_CON_RAG,RESPUESTA_CON_RAG,True,False,0.393
+sobre_el_sistema,Que formatos de archivo aceptas?,3,RESPUESTA_CON_RAG,RESPUESTA_CON_RAG,True,False,0.329
+sobre_el_sistema,Como te ayudo a leer papers en ingles?,1,RESPUESTA_CON_RAG,CONVERSACION_LIBRE,False,False,0.44
+sobre_el_sistema,Como te ayudo a leer papers en ingles?,2,RESPUESTA_CON_RAG,CONVERSACION_LIBRE,False,False,0.474
+sobre_el_sistema,Como te ayudo a leer papers en ingles?,3,RESPUESTA_CON_RAG,CONVERSACION_LIBRE,False,False,0.345
+seguimiento,Que limitaciones mencionaste?,1,RESPUESTA_CON_MEMORIA,RESPUESTA_CON_MEMORIA,True,False,0.342
+seguimiento,Que limitaciones mencionaste?,2,RESPUESTA_CON_MEMORIA,RESPUESTA_CON_MEMORIA,True,False,0.51
+seguimiento,Que limitaciones mencionaste?,3,RESPUESTA_CON_MEMORIA,RESPUESTA_CON_MEMORIA,True,False,0.509
+seguimiento,Como me llamo?,1,RESPUESTA_CON_MEMORIA,RESPUESTA_CON_MEMORIA,True,False,0.552
+seguimiento,Como me llamo?,2,RESPUESTA_CON_MEMORIA,RESPUESTA_CON_MEMORIA,True,False,0.398
+seguimiento,Como me llamo?,3,RESPUESTA_CON_MEMORIA,RESPUESTA_CON_MEMORIA,True,False,0.392
+seguimiento,Resumelo en una sola linea,1,RESPUESTA_CON_MEMORIA,CONVERSACION_LIBRE,False,True,0.613
+seguimiento,Resumelo en una sola linea,2,RESPUESTA_CON_MEMORIA,CONVERSACION_LIBRE,False,True,0.443
+seguimiento,Resumelo en una sola linea,3,RESPUESTA_CON_MEMORIA,CONVERSACION_LIBRE,False,True,0.516
+seguimiento,Y que dijiste del tamano de la muestra?,1,RESPUESTA_CON_MEMORIA,RESPUESTA_CON_MEMORIA,True,False,0.323
+seguimiento,Y que dijiste del tamano de la muestra?,2,RESPUESTA_CON_MEMORIA,RESPUESTA_CON_MEMORIA,True,False,0.386
+seguimiento,Y que dijiste del tamano de la muestra?,3,RESPUESTA_CON_MEMORIA,RESPUESTA_CON_MEMORIA,True,False,0.352
+con_pdf,Procesa este paper,1,PROCESAR_PAPER,PROCESAR_PAPER,True,False,0.0
+con_pdf,Procesa este paper,2,PROCESAR_PAPER,PROCESAR_PAPER,True,False,0.0
+con_pdf,Procesa este paper,3,PROCESAR_PAPER,PROCESAR_PAPER,True,False,0.0
+con_pdf,(solo PDF),1,PROCESAR_PAPER,PROCESAR_PAPER,True,False,0.0
+con_pdf,(solo PDF),2,PROCESAR_PAPER,PROCESAR_PAPER,True,False,0.0
+con_pdf,(solo PDF),3,PROCESAR_PAPER,PROCESAR_PAPER,True,False,0.0
+ambiguo,ok,1,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.486
+ambiguo,ok,2,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.481
+ambiguo,ok,3,CONVERSACION_LIBRE,CONVERSACION_LIBRE,True,False,0.333
+ambiguo,y eso?,1,RESPUESTA_CON_MEMORIA,RESPUESTA_CON_MEMORIA,True,False,0.518
+ambiguo,y eso?,2,RESPUESTA_CON_MEMORIA,RESPUESTA_CON_MEMORIA,True,False,0.521
+ambiguo,y eso?,3,RESPUESTA_CON_MEMORIA,RESPUESTA_CON_MEMORIA,True,False,0.387
